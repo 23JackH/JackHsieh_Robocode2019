@@ -17,7 +17,7 @@ import harkerrobolib.wrappers.HSTalon;
  * Add your docs here.
  */
 public class Drivetrain extends HSDrivetrain {
-
+    
   private static Drivetrain instance;
   
   private static final boolean LEFT_TALON_INVERT = false;

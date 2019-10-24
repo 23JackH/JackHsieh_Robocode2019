@@ -7,18 +7,54 @@
 
 package frc.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+import frc.robot.RobotMap;
+import harkerrobolib.subsystems.HSDrivetrain;
+import harkerrobolib.wrappers.HSTalon;
 
 /**
  * Add your docs here.
  */
-public class Drivetrain extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+public class Drivetrain extends HSDrivetrain {
+
+  private static Drivetrain instance;
+  
+  private static final boolean LEFT_TALON_INVERT = false;
+  private static final boolean RIGHT_TALON_INVERT = false;
+  private static final boolean LEFT_VICTOR_INVERT = false;
+  private static final boolean RIGHT_VICTOR_INVERT = false;
+
+
+  private Drivetrain() {
+    super(
+      new HSTalon(RobotMap.LEFT_TALON_ID), 
+      new HSTalon(RobotMap.RIGHT_TALON_ID),
+      new VictorSPX(RobotMap.LEFT_VICTOR_ID), 
+      new VictorSPX(RobotMap.RIGHT_VICTOR_ID)
+    );
+
+    // Set up motors
+    this.setUpMotors();
+  }
+
+  private void setUpMotors()
+  {
+    getLeftMaster().setInverted(LEFT_TALON_INVERT);
+    getRightMaster().setInverted(RIGHT_TALON_INVERT);
+    getLeftFollower().setInverted(LEFT_VICTOR_INVERT);
+    getLeftMaster().setInverted(RIGHT_VICTOR_INVERT);
+  }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+  
+  }
+
+  public static Drivetrain getInstance()
+  {
+    if(instance == null)
+      instance = new Drivetrain();
+    return instance;
   }
 }

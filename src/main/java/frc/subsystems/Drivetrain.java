@@ -7,6 +7,7 @@
 
 package frc.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import frc.commands.DriveWithPercentManual;
@@ -21,9 +22,9 @@ public class Drivetrain extends HSDrivetrain {
     
   private static Drivetrain instance;
   
-  private static final boolean LEFT_TALON_INVERT = false;
+  private static final boolean LEFT_TALON_INVERT = true;
   private static final boolean RIGHT_TALON_INVERT = false;
-  private static final boolean LEFT_VICTOR_INVERT = false;
+  private static final boolean LEFT_VICTOR_INVERT = true;
   private static final boolean RIGHT_VICTOR_INVERT = false;
 
 
@@ -44,10 +45,13 @@ public class Drivetrain extends HSDrivetrain {
     getLeftMaster().setInverted(LEFT_TALON_INVERT);
     getRightMaster().setInverted(RIGHT_TALON_INVERT);
     getLeftFollower().setInverted(LEFT_VICTOR_INVERT);
-    getLeftMaster().setInverted(RIGHT_VICTOR_INVERT);
+    getRightFollower().setInverted(RIGHT_VICTOR_INVERT);
 
     getLeftFollower().follow(getLeftMaster());
     getRightFollower().follow(getRightMaster());
+
+    getLeftMaster().setNeutralMode(NeutralMode.Brake);
+    getRightMaster().setNeutralMode(NeutralMode.Brake);
   }
 
   @Override

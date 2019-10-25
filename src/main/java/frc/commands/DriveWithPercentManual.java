@@ -15,7 +15,7 @@ import harkerrobolib.commands.IndefiniteCommand;
 
 public class DriveWithPercentManual extends IndefiniteCommand {
   
-  private static final double SPEED_MULTIPLIER = 0.1;
+  private static final double SPEED_MULTIPLIER = 0.4;
   
   public DriveWithPercentManual() {
     // Use requires() here to declare subsystem dependencies

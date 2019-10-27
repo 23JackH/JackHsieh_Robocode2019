@@ -30,10 +30,10 @@ public class Drivetrain extends HSDrivetrain {
 
   private Drivetrain() {
     super(
-      new HSTalon(RobotMap.LEFT_TALON_ID), 
-      new HSTalon(RobotMap.RIGHT_TALON_ID),
-      new VictorSPX(RobotMap.LEFT_VICTOR_ID), 
-      new VictorSPX(RobotMap.RIGHT_VICTOR_ID)
+      new HSTalon(RobotMap.LEFT_TALON_ID_DRIVETRAIN), 
+      new HSTalon(RobotMap.RIGHT_TALON_ID_DRIVETRAIN),
+      new VictorSPX(RobotMap.LEFT_VICTOR_ID_DRIVETRAIN), 
+      new VictorSPX(RobotMap.RIGHT_VICTOR_ID_DRIVETRAIN)
     );
 
     // Set up motors

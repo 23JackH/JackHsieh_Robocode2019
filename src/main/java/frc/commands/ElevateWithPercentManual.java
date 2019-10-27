@@ -10,18 +10,18 @@ package frc.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import frc.robot.OI;
-import frc.subsystems.Drivetrain;
+import frc.subsystems.Elevator;
 import harkerrobolib.commands.IndefiniteCommand;
 
-public class DriveWithPercentManual extends IndefiniteCommand {
-  
-  private static final double SPEED_MULTIPLIER = 0.4;
-  
-  public DriveWithPercentManual() {
-    requires(Drivetrain.getInstance());
+public class ElevateWithPercentManual extends IndefiniteCommand {
+ 
+  private static final double SPEED_MULTIPLIER = 0.25;
+
+  public ElevateWithPercentManual() {
+    requires(Elevator.getInstance());
   }
 
-  /* DON'T NEED
+  /*
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
@@ -30,29 +30,23 @@ public class DriveWithPercentManual extends IndefiniteCommand {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // Left driver joystick will control the entire thing
-    double speed = OI.getInstance().getDriver().getLeftY();
-    double turn = OI.getInstance().getDriver().getLeftX();
+    double speed = OI.getInstance().getDriver().getRightY();
 
-    Drivetrain.getInstance().getLeftMaster().set(ControlMode.PercentOutput, SPEED_MULTIPLIER*(speed + turn));
-    Drivetrain.getInstance().getRightMaster().set(ControlMode.PercentOutput, SPEED_MULTIPLIER*(speed - turn));
+    Elevator.getInstance().getMasterTalon().set(ControlMode.PercentOutput, SPEED_MULTIPLIER * speed);
   }
 
-
-  /* DON'T NEED
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
-  }*/
+  }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Drivetrain.getInstance().getLeftMaster().set(ControlMode.Disabled, 0);
-    Drivetrain.getInstance().getRightMaster().set(ControlMode.Disabled, 0);
+    Elevator.getInstance().getMasterTalon().set(ControlMode.Disabled, 0);
   }
- 
+
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override

@@ -22,10 +22,10 @@ public class Elevator extends Subsystem {
   
   private static Elevator instance;
 
-  private static final boolean MASTER_TALON_INVERT = false;
-  private static final boolean FOLLOWER_TALON_INVERT = false;
-  private static final boolean LEFT_VICTOR_INVERT = false;
-  private static final boolean RIGHT_VICTOR_INVERT = false;
+  private static final boolean MASTER_TALON_INVERT = true;
+  private static final boolean FOLLOWER_TALON_INVERT = true;
+  private static final boolean LEFT_VICTOR_INVERT = true;
+  private static final boolean RIGHT_VICTOR_INVERT = true;
 
   // TODO: Ask about variable names
   private HSTalon masterTalon;

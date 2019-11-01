@@ -9,10 +9,10 @@ public class RobotMap
     public static final int RIGHT_VICTOR_ID_DRIVETRAIN = 1;
 
     // Elevator motor IDs
-    public static final int MASTER_TALON_ID_ELEVATOR = 0;
-    public static final int FOLLOWER_TALON_ID_ELEVATOR = 0;
-    public static final int LEFT_VICTOR_ID_ELEVATOR = 0;
-    public static final int RIGHT_VICTOR_ID_ELEVATOR = 0;
+    public static final int MASTER_TALON_ID_ELEVATOR = 2;
+    public static final int FOLLOWER_TALON_ID_ELEVATOR = 6;
+    public static final int LEFT_VICTOR_ID_ELEVATOR = 3;
+    public static final int RIGHT_VICTOR_ID_ELEVATOR = 5;
 
     // OI ports
     public static final int DRIVER_PORT = 0;

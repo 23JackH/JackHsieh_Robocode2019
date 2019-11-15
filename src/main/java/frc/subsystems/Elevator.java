@@ -7,6 +7,8 @@
 
 package frc.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
@@ -16,7 +18,7 @@ import harkerrobolib.wrappers.HSTalon;
 import frc.commands.ElevateWithPercentManual;
 
 /**
- * Add your docs here.
+* Elevator subsystem containing 1 master talon and 3 followers
  */
 public class Elevator extends Subsystem {
   
@@ -26,6 +28,10 @@ public class Elevator extends Subsystem {
   private static final boolean FOLLOWER_TALON_INVERT = true;
   private static final boolean LEFT_VICTOR_INVERT = true;
   private static final boolean RIGHT_VICTOR_INVERT = true;
+
+  public static final double GRAVITY_FF = 0.10;
+
+  private static final double COMPENSATION_VOLTAGE = 10.0;
 
   // TODO: Ask about variable names
   private HSTalon masterTalon;
@@ -38,6 +44,10 @@ public class Elevator extends Subsystem {
     this.initializeMotors();
     
     this.setUpMotors();
+
+    this.configVoltageComp();
+
+    this.configCurrentLimit();
   }
 
   /**
@@ -67,6 +77,32 @@ public class Elevator extends Subsystem {
     
     getMasterTalon().setNeutralMode(NeutralMode.Brake);
   }
+
+  /**
+   * Configures voltage
+   */
+  private void configVoltageComp()
+  {
+    masterTalon.configVoltageCompSaturation(COMPENSATION_VOLTAGE);
+    masterTalon.enableVoltageCompensation(true);
+  }
+
+  /** 
+   * Limits current
+   */
+  private void configCurrentLimit()
+  {
+    /*
+    masterTalon.configContinuousCurrentLimit(CONTINUOUS_CURRENT_LIMIT);
+    masterTalon.configPeakCurrentDuration(PEAK_TIME);
+    masterTalon.configPeakCurrentLimit(PEAK_CURRENT_LIMIT);
+    masterTalon.enableCurrentLimit(true);
+    */
+  }
+
+  /** 
+   * Configures 
+   */
 
   @Override
   public void initDefaultCommand() {
@@ -103,6 +139,11 @@ public class Elevator extends Subsystem {
   public VictorSPX getRightVictor()
   {
     return rightVictor;
+  }
+
+  public void setElevator(double output)
+  {
+    getMasterTalon().set(ControlMode.PercentOutput, output, DemandType.ArbitraryFeedForward, GRAVITY_FF); 
   }
 
 }

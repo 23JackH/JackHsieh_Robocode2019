@@ -32,7 +32,9 @@ public class ElevateWithPercentManual extends IndefiniteCommand {
   protected void execute() {
     double speed = OI.getInstance().getDriver().getRightY();
 
-    Elevator.getInstance().getMasterTalon().set(ControlMode.PercentOutput, SPEED_MULTIPLIER * speed);
+    // Uses utility function to set motion style
+    Elevator.getInstance().setElevator(SPEED_MULTIPLIER * speed);
+    // Elevator.getInstance().getMasterTalon().set(ControlMode.MotionMagic, lastSetpoint, DemandType.ArbitraryFeedForward, Elevator.GRAVITY_FF);
   }
 
   // Make this return true when this Command no longer needs to run execute()

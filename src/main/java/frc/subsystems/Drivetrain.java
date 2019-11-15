@@ -38,8 +38,11 @@ public class Drivetrain extends HSDrivetrain {
 
     // Set up motors
     this.setUpMotors();
+
+    this.configVoltageComp();
   }
 
+  // Set up motors
   private void setUpMotors()
   {
     getLeftMaster().setInverted(LEFT_TALON_INVERT);
@@ -52,6 +55,41 @@ public class Drivetrain extends HSDrivetrain {
 
     getLeftMaster().setNeutralMode(NeutralMode.Brake);
     getRightMaster().setNeutralMode(NeutralMode.Brake);
+
+    configVoltageComp();
+    configCurrentLimit();
+  }
+
+  /**
+   * Configures voltage compensation
+   */
+  private void configVoltageComp()
+  {
+    /*
+    getLeftMaster().configVoltageCompSaturation(COMPENSATION_VOLTAGE);
+    getLeftMaster().enableVoltageCompensation(true);
+
+    getRightMaster().configVoltageCompSaturation(COMPENSATION_VOLTAGE);
+    getRightMaster().enableVoltageCompensation(true);
+    */
+  }
+
+  /**
+   * Configures current limitation
+   */
+  private void configCurrentLimit()
+  {
+    /*
+    getLeftMaster().configContinuousCurrentLimit(CONTINUOUS_CURRENT_LIMIT);
+    getLeftMaster().configPeakCurrentDuration(PEAK_TIME);
+    getLeftMaster().configPeakCurrentLimit(PEAK_CURRENT_LIMIT);
+    getLeftMaster().enableCurrentLimit(true);
+
+    getRightMaster().configContinuousCurrentLimit(CONTINUOUS_CURRENT_LIMIT);
+    getRightMaster().configPeakCurrentDuration(PEAK_TIME);
+    getRightMaster().configPeakCurrentLimit(PEAK_CURRENT_LIMIT);
+    getRightMaster().enableCurrentLimit(true);
+     */
   }
 
   @Override
